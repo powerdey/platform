@@ -39,3 +39,6 @@ testem.log
 Thumbs.db
 
 .angular
+/migrations.json
+/results
+/junit.xml

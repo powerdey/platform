@@ -2,6 +2,8 @@
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('source-map-support').install();
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
