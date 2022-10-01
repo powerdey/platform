@@ -65,7 +65,7 @@ jobs:
         name: Yarn Install
         id: yarn
         if: steps.node-cache.outputs.cache-hit != 'true'
-      - run: yarn lint
+      - run: yarn affected:lint
         id: lint
       - uses: act10ns/slack@v1
         env:
@@ -102,12 +102,19 @@ jobs:
         name: Yarn Install
         id: yarn
         if: steps.node-cache.outputs.cache-hit != 'true'
-      - run: npm test
+      - run: yarn affected:test
+        name: Run Tests
         id: tests
+      - name: Check jest existence
+        id: check_jest_output
+        if: success() || failure() # run this step even if previous step failed
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'results/junit-*.xml'
       - name: Test Report
         id: test-report
         uses: dorny/test-reporter@v1
-        if: success() || failure() # run this step even if previous step failed
+        if: (success() || failure()) && steps.check_jest_output.outputs.files_exists == 'true' # run this step even if previous step failed
         with:
           name: JEST Tests # Name of the check run which will be created
           path: results/junit-*.xml # Path to test results
