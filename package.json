@@ -9,6 +9,7 @@
     "build": "nx build",
     "build:local": "nx run-many --target build --all",
     "test": "nx run-many --target test --all",
+    "lint": "nx run-many --target lint --all",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
