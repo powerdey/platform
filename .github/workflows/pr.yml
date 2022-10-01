@@ -1,0 +1,209 @@
+name: Checks
+on:
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  setup:
+    name: Setup
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: node-cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn --frozen-lockfile
+        name: Yarn Install
+        id: yarn
+        if: steps.node-cache.outputs.cache-hit != 'true'
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: failure()
+  lint:
+    name: Lint
+    needs:
+      - setup
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: node-cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn --frozen-lockfile
+        name: Yarn Install
+        id: yarn
+        if: steps.node-cache.outputs.cache-hit != 'true'
+#      - run: yarn affected:lint
+      - run: yarn lint
+        id: lint
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: failure()
+  unit:
+    name: Unit Tests
+    needs:
+      - setup
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: node-cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn --frozen-lockfile
+        name: Yarn Install
+        id: yarn
+        if: steps.node-cache.outputs.cache-hit != 'true'
+#      - run: yarn affected:test
+      - run: yarn test
+        name: Run Tests
+        id: tests
+      - name: Check jest existence
+        id: check_jest_output
+        if: success() || failure() # run this step even if previous step failed
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'results/junit-*.xml'
+      - name: Test Report
+        id: test-report
+        uses: dorny/test-reporter@v1
+        if: (success() || failure()) && steps.check_jest_output.outputs.files_exists == 'true' # run this step even if previous step failed
+        with:
+          name: JEST Tests # Name of the check run which will be created
+          path: results/junit-*.xml # Path to test results
+          reporter: jest-junit # Format of test results
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: failure()
+  title:
+    name: Validate PR Title
+    needs:
+      - setup
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: node-cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn --frozen-lockfile
+        id: yarn
+        name: Yarn Install
+        if: steps.node-cache.outputs.cache-hit != 'true'
+      - uses: beemojs/conventional-pr-action@v2
+        id: validate-pr-title
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          config-preset: angular
+          auto-install: false
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: failure()
+  build:
+    name: Build
+    needs:
+      - setup
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: node-cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn --frozen-lockfile
+        name: Yarn Install
+        id: yarn
+        if: steps.node-cache.outputs.cache-hit != 'true'
+      - run: yarn build:local
+        id: build-local
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: failure()

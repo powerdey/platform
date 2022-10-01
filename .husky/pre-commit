@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#set -ex
+
+. "$(dirname "$0")/_/husky.sh"
+
+yarn affected:format
+
+yarn affected:test
+yarn lint:fix
+
+CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+git add ${CHANGED_FILES}
