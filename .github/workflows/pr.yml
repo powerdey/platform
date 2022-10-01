@@ -65,7 +65,8 @@ jobs:
         name: Yarn Install
         id: yarn
         if: steps.node-cache.outputs.cache-hit != 'true'
-      - run: yarn affected:lint
+#      - run: yarn affected:lint
+      - run: yarn lint
         id: lint
       - uses: act10ns/slack@v1
         env:
@@ -102,7 +103,8 @@ jobs:
         name: Yarn Install
         id: yarn
         if: steps.node-cache.outputs.cache-hit != 'true'
-      - run: yarn affected:test
+#      - run: yarn affected:test
+      - run: yarn test
         name: Run Tests
         id: tests
       - name: Check jest existence
