@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: node-cache
         env:
           cache-name: cache-node-modules
@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: node-cache
         env:
           cache-name: cache-node-modules
@@ -84,7 +84,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: node-cache
         env:
           cache-name: cache-node-modules
@@ -137,7 +137,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: node-cache
         env:
           cache-name: cache-node-modules
@@ -179,7 +179,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: node-cache
         env:
           cache-name: cache-node-modules
