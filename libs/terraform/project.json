@@ -1,0 +1,29 @@
+{
+  "name": "terraform",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/terraform/src",
+  "projectType": "library",
+  "targets": {
+    "formatx": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "terraform fmt -recursive"
+          }
+        ]
+      }
+    },
+    "lintx": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "terraform validate"
+          }
+        ]
+      }
+    }
+  },
+  "tags": []
+}
