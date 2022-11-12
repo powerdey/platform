@@ -5,7 +5,7 @@
   },
   "functions": [
     {
-      "source": "functions",
+      "source": "dist/apps/api",
       "codebase": "default",
       "ignore": [
         "node_modules",

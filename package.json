@@ -7,6 +7,7 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
     "start": "nx run-many --target serve --projects app,api",
     "build": "nx build",
+    "build:api": "nx run api:build --skip-nx-cache",
     "build:local": "nx run-many --target build --all",
     "build:production": "nx run-many --target build --all",
     "test": "nx run-many --target test --all",
@@ -29,7 +30,8 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "test:ui:watch": "jest --watch",
-    "setup": "husky install"
+    "setup": "husky install",
+    "emulate": "firebase emulators:start --export-on-exit=./local --import=./local"
   },
   "private": true,
   "dependencies": {
@@ -46,6 +48,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nrwl/angular": "14.8.2",
     "firebase": "^9.12.1",
+    "firebase-admin": "^11.2.1",
+    "firebase-functions": "^4.0.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.5.0",
     "source-map-support": "^0.5.21",

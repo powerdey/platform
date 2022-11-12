@@ -16,6 +16,18 @@ This project was generated using [Nx](https://nx.dev).
 
 [Interactive Tutorial](https://nx.dev/getting-started/angular-tutorial)
 
+## Running Locally
+
+Run `yarn emulate`
+
+The various components and their urls are:
+
+| Site     | Local                 | Live URLs                    |
+|----------|-----------------------|------------------------------|
+| App      | http://localhost:4201 | https://powerdey.web.app     |
+| API      | http://localhost:5001 | https://powerdey.web.app/api |
+| Emulator | http://localhost:4999 | N/A                          |
+
 ## Adding capabilities to your workspace
 
 Nx supports many plugins which add capabilities for developing different types of applications and different tools.
