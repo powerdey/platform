@@ -132,6 +132,7 @@ jobs:
           steps: ${{ toJson(steps) }}
         if: failure()
   title:
+    if: ${{ github.event_name == 'pull_request' }}
     name: Validate PR Title
     needs:
       - setup
@@ -225,7 +226,6 @@ jobs:
     needs:
       - lint
       - unit
-      - title
       - build
     if: ${{ github.event_name == 'push' }}
     uses: ./.github/workflows/firebase-hosting-merge.yml
