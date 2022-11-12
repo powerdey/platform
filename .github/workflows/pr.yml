@@ -215,14 +215,18 @@ jobs:
     needs:
       - lint
       - unit
+      - title
       - build
     if: ${{ github.event_name == 'pull_request' }}
     uses: ./.github/workflows/firebase-hosting-pull-request.yml
+    secrets: inherit
   deploy:
     name: Deploy Merge
     needs:
       - lint
       - unit
+      - title
       - build
     if: ${{ github.event_name == 'push' }}
     uses: ./.github/workflows/firebase-hosting-merge.yml
+    secrets: inherit
