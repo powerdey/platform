@@ -3,13 +3,9 @@
 
 name: Deploy to Firebase Hosting on merge
 'on':
-  workflow_run:
-    workflows: ["Checks"]
-    types:
-      - completed
+  workflow_call:
 jobs:
   build_and_deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
