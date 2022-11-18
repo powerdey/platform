@@ -9,8 +9,7 @@ require('source-map-support').install();
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 import * as express from 'express';
 import * as functions from 'firebase-functions';
@@ -23,6 +22,17 @@ const localPrefix = 'api';
 
 async function createApp() {
   const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
+  app.setGlobalPrefix(globalPrefix);
+
+  const config = new DocumentBuilder()
+    .setTitle('Powerdey Api')
+    .setDescription('Powerdey API description')
+    .setVersion('1.0')
+    .addTag('powerdey')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup(globalPrefix, app, document);
   return app;
 }
 
