@@ -31,7 +31,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "test:ui:watch": "jest --watch",
-    "deploy:functions:staging": "firebase deploy --only functions",
+    "deploy:functions:staging": "firebase deploy --only functions --message \"$(git log -1 --pretty=%s)\"",
     "setup": "husky install",
     "emulate": "firebase emulators:start --export-on-exit=./local --import=./local"
   },
