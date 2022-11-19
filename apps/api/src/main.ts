@@ -21,10 +21,8 @@ const expressInstance = express();
 const globalPrefix = '';
 const localPrefix = 'api';
 
-async function createApp() {
+async function createApp(prefix: string) {
   const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
-  app.setGlobalPrefix(globalPrefix);
-
   const config = new DocumentBuilder()
     .setTitle('Powerdey Api')
     .setDescription('Powerdey API description')
@@ -33,7 +31,7 @@ async function createApp() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup(globalPrefix, app, document);
+  SwaggerModule.setup(prefix, app, document);
 
   const redocOptions: RedocOptions = {
     title: 'Powerdey',
@@ -49,20 +47,23 @@ async function createApp() {
 }
 
 async function bootstrap() {
-  const app = await createApp();
+  const app = await createApp(localPrefix);
   app.setGlobalPrefix(localPrefix);
-
   const port = process.env.PORT || 3333;
   await app.listen(port);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 Application is running on: http://localhost:${port}/${localPrefix}`
   );
 }
 
 async function bootstrapServerless() {
-  const app = await createApp();
-  app.setGlobalPrefix(process.env.FIREBASE_CONFIG ? localPrefix : globalPrefix);
+  const prefix = process.env.FIREBASE_CONFIG ? localPrefix : globalPrefix;
+  const app = await createApp(prefix);
+  app.setGlobalPrefix(prefix);
   await app.init();
+  Logger.log(
+    `🚀 Application is configured to run at: /${prefix}`
+  );
 }
 
 const runtimeOpts: functions.RuntimeOptions = {
