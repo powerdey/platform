@@ -13,6 +13,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 import * as express from 'express';
 import * as functions from 'firebase-functions';
+import { RedocModule, RedocOptions } from '@nicholas.braun/nestjs-redoc';
 
 const expressInstance = express();
 
@@ -33,12 +34,24 @@ async function createApp() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(globalPrefix, app, document);
+
+  const redocOptions: RedocOptions = {
+    title: 'Powerdey',
+    sortPropsAlphabetically: true,
+    hideDownloadButton: false,
+    hideHostname: false,
+    tagGroups: [],
+  };
+
+  await RedocModule.setup('/docs', app, document, redocOptions);
+
   return app;
 }
 
 async function bootstrap() {
   const app = await createApp();
   app.setGlobalPrefix(localPrefix);
+
   const port = process.env.PORT || 3333;
   await app.listen(port);
   Logger.log(
