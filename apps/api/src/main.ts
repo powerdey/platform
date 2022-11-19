@@ -38,7 +38,7 @@ async function bootstrap() {
 
 async function bootstrapServerless() {
   const app = await createApp();
-  app.setGlobalPrefix(globalPrefix);
+  app.setGlobalPrefix(process.env.FIREBASE_CONFIG ? localPrefix : globalPrefix);
   await app.init();
 }
 
@@ -58,8 +58,5 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
 }
 
 export const api = functions.runWith(runtimeOpts).https.onRequest((request, response) => {
-  // console.trace(request);
-  // console.trace(request.url);
-  // request.url = `api${request.url}`
   expressInstance(request, response);
 });

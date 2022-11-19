@@ -42,3 +42,5 @@ Thumbs.db
 /migrations.json
 /results
 /junit.xml
+
+/firebase-export-*
