@@ -2751,7 +2751,7 @@
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-14.2.4.tgz#1ebc02c6d89b0fbd9edc857c937c6d840423fce3"
   integrity sha512-rmoUTz3FNhQctsmsq1HM7OfoT+pJiI2dhK0u6SqKXkP3OJ+dGW7NHQ5jYR7IATa7wLFe0vDiEr8caxZ5JBAEsQ==
 
-"@nicholas.braun/nestjs-redoc@^2.2.3":
+"@nicholas.braun/nestjs-redoc@2.2.3":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@nicholas.braun/nestjs-redoc/-/nestjs-redoc-2.2.3.tgz#6735c6c94746ef4f3aaca8675544dbabed71b839"
   integrity sha512-DfaxB9W0aQf07xbRR4mk/abVO2oMHcetcyNCCBLEd68HDe54Sak5herG/yg0bcOFLh3Uo9zpitYya43WGfU6+A==

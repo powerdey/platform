@@ -24,7 +24,7 @@ const localPrefix = 'api';
 async function createApp(prefix: string) {
   const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
   const config = new DocumentBuilder()
-    .setTitle('Powerdey Api')
+    .setTitle('Powerdey')
     .setDescription('Powerdey API description')
     .setVersion('1.0')
     .addTag('powerdey')
