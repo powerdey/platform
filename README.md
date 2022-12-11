@@ -16,9 +16,15 @@ This project was generated using [Nx](https://nx.dev).
 
 [Interactive Tutorial](https://nx.dev/getting-started/angular-tutorial)
 
+
 ## Running Locally
 
-Run `yarn emulate`
+### Initial Setup
+- Install dependencies: `yarn`
+- Authenticate on Firebase:  `yarn firebase login`
+- Build the application: `yarn build:local`
+  - If unable to access the NX cloud output, login, and/or verify authorisation with admin
+- Run `yarn emulate`
 
 The various components and their urls are:
 
