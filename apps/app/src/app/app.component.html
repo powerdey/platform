@@ -1,9 +1,16 @@
-<div style="text-align: center">
-  <h1>Welcome to app!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Smart, Fast and Extensible Build System"
-  />
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Power dey?</span>
+</mat-toolbar>
+
+<div id="main">
+  <div>Message: {{ hello$ | async | json }}</div>
+
+  <router-outlet></router-outlet>
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
