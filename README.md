@@ -14,23 +14,30 @@ This project was generated using [Nx](https://nx.dev).
 
 [Interactive Tutorial](https://nx.dev/getting-started/angular-tutorial)
 
+
+## Requirements
+
+- node 16 (can be installed via nvm) to prevent firebase errors.
+
+
 ## Running Locally
 
 ### Initial Setup
 
 - Install dependencies: `yarn`
-- Authenticate on Firebase:  `yarn firebase login`
+- Set up git hooks: `yarn setup`
+- Authenticate on Firebase: `yarn firebase login`
 - Build the application: `yarn build:local`
   - If unable to access the NX cloud output, login, and/or verify authorisation with admin
 - Run `yarn emulate`
 
 The various components and their urls are:
 
-| Site     | Local                 | Local with firebase   | Live URLs                    |
-|----------|-----------------------|-----------------------|------------------------------|
-| App      | http://localhost:4201 | http://localhost:5000 | https://powerdey.web.app     |
+| Site     | Local                 | Local with firebase                            | Live URLs                    |
+| -------- | --------------------- | ---------------------------------------------- | ---------------------------- |
+| App      | http://localhost:4201 | http://localhost:5000                          | https://powerdey.web.app     |
 | API      | http://localhost:5001 | http://127.0.0.1:5001/powerdey/us-central1/api | https://powerdey.web.app/api |
-| Emulator | N/A                   | http://localhost:4999 | N/A                          |
+| Emulator | N/A                   | http://localhost:4999                          | N/A                          |
 
 ## Adding capabilities to your workspace
 
@@ -120,3 +127,4 @@ advanced code generation and project dependency graph, plus a unified experience
 developers.
 
 Visit [Nx Cloud](https://nx.app/) to learn more.
+

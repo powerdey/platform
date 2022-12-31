@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {GoogleMap} from "@angular/google-maps";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { GoogleMap } from '@angular/google-maps';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
@@ -27,17 +27,19 @@ export class RecordingComponent implements OnInit {
 
   // TODO: Lazy-load Google maps javascript
   constructor(private snackbar: MatSnackBar, private httpClient: HttpClient) {
-    this.apiLoaded = httpClient.get<MapApiResponse>("/api/maps-api-key").pipe(
-      switchMap((response) => httpClient.jsonp(`https://maps.googleapis.com/maps/api/js?key=${response.apiKey}&libraries=visualization`, 'callback')),
+    this.apiLoaded = httpClient.get<MapApiResponse>('/api/maps-api-key').pipe(
+      switchMap((response) =>
+        httpClient.jsonp(
+          `https://maps.googleapis.com/maps/api/js?key=${response.apiKey}&libraries=visualization`,
+          'callback'
+        )
+      ),
       map(() => true),
-      catchError(() => of(false)),
-    )
-
+      catchError(() => of(false))
+    );
   }
 
-
   ngOnInit(): void {
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
@@ -47,8 +49,10 @@ export class RecordingComponent implements OnInit {
           };
         },
         (positionError) => {
-          console.error({positionError})
-          this.snackbar.open(`Unable to set current location: ${positionError.message}`);
+          console.error({ positionError });
+          this.snackbar.open(
+            `Unable to set current location: ${positionError.message}`
+          );
         }
       );
     }
