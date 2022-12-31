@@ -29,7 +29,7 @@ The various components and their urls are:
 | Site     | Local                 | Local with firebase   | Live URLs                    |
 |----------|-----------------------|-----------------------|------------------------------|
 | App      | http://localhost:4201 | http://localhost:5000 | https://powerdey.web.app     |
-| API      | http://localhost:5001 | http://localhost:5001 | https://powerdey.web.app/api |
+| API      | http://localhost:5001 | http://127.0.0.1:5001/powerdey/us-central1/api | https://powerdey.web.app/api |
 | Emulator | N/A                   | http://localhost:4999 | N/A                          |
 
 ## Adding capabilities to your workspace

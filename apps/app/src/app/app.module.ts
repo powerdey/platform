@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {NxWelcomeComponent} from './nx-welcome.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {routes} from './app-routes';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatToolbarModule,

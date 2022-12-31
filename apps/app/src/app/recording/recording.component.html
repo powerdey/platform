@@ -3,11 +3,11 @@
     <mat-card-title>E dey?</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-<!--    <div *ngIf="apiLoaded | async">-->
+   <div *ngIf="apiLoaded | async">
       <google-map #map [options]="options" [center]="center" width="100%">
         <map-marker *ngIf="center" [position]="center" [options]="markerOptions"></map-marker>
       </google-map>
-<!--    </div>-->
+   </div>
 <div class="text-center">
   <button
     mat-fab

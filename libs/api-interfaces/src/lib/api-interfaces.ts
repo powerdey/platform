@@ -8,6 +8,9 @@ export interface MapApiResponse {
 }
 
 export class MapApiResponseConcrete implements MapApiResponse {
+  // Define api property
   @ApiProperty()
-  apiKey: string,
+  apiKey: string = "";
+
 }
+
