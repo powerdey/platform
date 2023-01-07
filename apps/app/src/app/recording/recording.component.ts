@@ -4,7 +4,7 @@ import { GoogleMap } from '@angular/google-maps';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import {environment} from "../../environments/environment";
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'powerdey-recording',

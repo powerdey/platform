@@ -14,11 +14,9 @@ This project was generated using [Nx](https://nx.dev).
 
 [Interactive Tutorial](https://nx.dev/getting-started/angular-tutorial)
 
-
 ## Requirements
 
 - node 16 (can be installed via nvm) to prevent firebase errors.
-
 
 ## Running Locally
 
@@ -127,4 +125,3 @@ advanced code generation and project dependency graph, plus a unified experience
 developers.
 
 Visit [Nx Cloud](https://nx.app/) to learn more.
-
