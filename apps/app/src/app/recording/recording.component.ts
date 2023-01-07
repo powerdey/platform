@@ -4,7 +4,7 @@ import { GoogleMap } from '@angular/google-maps';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { MapApiResponse } from '@powerdey/api-interfaces';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'powerdey-recording',
@@ -27,7 +27,9 @@ export class RecordingComponent implements OnInit {
 
   // TODO: Lazy-load Google maps javascript
   constructor(private snackbar: MatSnackBar, private httpClient: HttpClient) {
-    this.apiLoaded = httpClient.get<MapApiResponse>('/api/maps-api-key').pipe(
+    this.apiLoaded = of({
+      apiKey: environment.firebase.apiKey,
+    }).pipe(
       switchMap((response) =>
         httpClient.jsonp(
           `https://maps.googleapis.com/maps/api/js?key=${response.apiKey}&libraries=visualization`,

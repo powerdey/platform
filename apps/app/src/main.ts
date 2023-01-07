@@ -8,6 +8,13 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
+(async function () {
+  const response = await fetch('/__/firebase/init.json');
+  environment.firebase = await response.json();
+
+  await platformBrowserDynamic()
+    .bootstrapModule(AppModule);
+})()
   .catch((err) => console.error(err));
+
+

@@ -14,6 +14,7 @@ import { AppModule } from './app/app.module';
 import * as express from 'express';
 import * as functions from 'firebase-functions';
 import { RedocModule, RedocOptions } from '@nicholas.braun/nestjs-redoc';
+import {LoggerMiddleware} from "./app/middleware/logger.middleware";
 
 const expressInstance = express();
 
@@ -22,6 +23,7 @@ const globalPrefix = '';
 const localPrefix = 'api';
 
 async function createApp(prefix: string) {
+
   const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
   const config = new DocumentBuilder()
     .setTitle('Powerdey')
@@ -29,6 +31,9 @@ async function createApp(prefix: string) {
     .setVersion('1.0')
     .addTag('powerdey')
     .build();
+
+  // todo: figure out dependencies and smarter injection
+  app.use(new LoggerMiddleware().use);
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(prefix, app, document);

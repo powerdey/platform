@@ -15,7 +15,7 @@ export class MapsApiKeyController {
   })
   getData(): MapApiResponse {
     return {
-      apiKey: 'AIzaSyDMi3IPLBohxlVF7gtCJGyPZRzxlknyrWc',
+      apiKey: '',
     };
   }
 }

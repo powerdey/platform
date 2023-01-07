@@ -4,6 +4,16 @@
 
 export const environment = {
   production: false,
+  firebase: {
+    apiKey: "",
+    appId: "",
+    authDomain: "",
+    databaseURL: "",
+    measurementId: "",
+    messagingSenderId: "",
+    projectId: "",
+    storageBucket: ""
+  }
 };
 
 /*
