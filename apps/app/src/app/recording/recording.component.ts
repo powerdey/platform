@@ -1,6 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {GoogleMap} from "@angular/google-maps";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { GoogleMap } from '@angular/google-maps';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'powerdey-recording',
@@ -19,12 +23,25 @@ export class RecordingComponent implements OnInit {
     label: 'Your domot',
   };
 
+  apiLoaded: Observable<boolean>;
+
   // TODO: Lazy-load Google maps javascript
-  constructor(private snackbar: MatSnackBar) {
+  constructor(private snackbar: MatSnackBar, private httpClient: HttpClient) {
+    this.apiLoaded = of({
+      apiKey: environment.firebase.apiKey,
+    }).pipe(
+      switchMap((response) =>
+        httpClient.jsonp(
+          `https://maps.googleapis.com/maps/api/js?key=${response.apiKey}&libraries=visualization`,
+          'callback'
+        )
+      ),
+      map(() => true),
+      catchError(() => of(false))
+    );
   }
 
   ngOnInit(): void {
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
@@ -34,8 +51,10 @@ export class RecordingComponent implements OnInit {
           };
         },
         (positionError) => {
-          console.error({positionError})
-          this.snackbar.open(`Unable to set current location: ${positionError.message}`);
+          console.error({ positionError });
+          this.snackbar.open(
+            `Unable to set current location: ${positionError.message}`
+          );
         }
       );
     }
