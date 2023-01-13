@@ -5,6 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  serverTimestamp,
+} from '@angular/fire/firestore';
+import * as geofire from 'geofire-common';
 
 @Component({
   selector: 'powerdey-recording',
@@ -26,7 +33,11 @@ export class RecordingComponent implements OnInit {
   apiLoaded: Observable<boolean>;
 
   // TODO: Lazy-load Google maps javascript
-  constructor(private snackbar: MatSnackBar, private httpClient: HttpClient) {
+  constructor(
+    private snackbar: MatSnackBar,
+    private httpClient: HttpClient,
+    private fireStore: Firestore
+  ) {
     this.apiLoaded = of({
       apiKey: environment.firebase.apiKey,
     }).pipe(
@@ -58,5 +69,32 @@ export class RecordingComponent implements OnInit {
         }
       );
     }
+  }
+
+  async record(eDey: boolean) {
+    console.log({ eDey });
+    console.log(this.center);
+    // collection(this.fireStore);
+    // Add a new document in collection "cities"
+
+    const hash = geofire.geohashForLocation([this.center.lat, this.center.lng]);
+
+    const f_loc = {
+      lat: this.center.lat,
+      lng: this.center.lng,
+      geohash: hash,
+    };
+
+    console.log(f_loc);
+
+    const docRef = await addDoc(collection(this.fireStore, 'records'), {
+      on: eDey,
+      location: f_loc,
+      recorded_at: serverTimestamp(),
+      device_id: '',
+    });
+    console.log('Document written with ID: ', docRef.id);
+
+    // Add alert to say inform user that input was recorded
   }
 }

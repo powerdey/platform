@@ -14,6 +14,7 @@
     </div>
     <div class="text-center">
       <button
+        (click)="record(true)"
         mat-fab
         color="primary"
         aria-label="Example icon button with a filter list icon"
@@ -21,6 +22,7 @@
         Yes
       </button>
       <button
+        (click)="record(false)"
         mat-fab
         color="warn"
         aria-label="Example icon button with a filter list icon"
