@@ -5,6 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  serverTimestamp,
+} from '@angular/fire/firestore';
+import * as geofire from 'geofire-common';
 
 @Component({
   selector: 'powerdey-recording',
@@ -26,7 +33,11 @@ export class RecordingComponent implements OnInit {
   apiLoaded: Observable<boolean>;
 
   // TODO: Lazy-load Google maps javascript
-  constructor(private snackbar: MatSnackBar, private httpClient: HttpClient) {
+  constructor(
+    private snackbar: MatSnackBar,
+    private httpClient: HttpClient,
+    private fireStore: Firestore
+  ) {
     this.apiLoaded = of({
       apiKey: environment.firebase.apiKey,
     }).pipe(
@@ -58,5 +69,27 @@ export class RecordingComponent implements OnInit {
         }
       );
     }
+  }
+
+  async record(eDey: boolean) {
+    const hash = geofire.geohashForLocation([this.center.lat, this.center.lng]);
+
+    const location = {
+      lat: this.center.lat,
+      lng: this.center.lng,
+      geohash: hash,
+    };
+
+    const docRef = await addDoc(collection(this.fireStore, 'records'), {
+      on: eDey,
+      location,
+      recorded_at: serverTimestamp(),
+      device_id: '',
+    });
+
+    this.snackbar.open(`Kpakam! E don enter`, undefined, {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }
