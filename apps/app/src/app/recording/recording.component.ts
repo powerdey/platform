@@ -72,29 +72,24 @@ export class RecordingComponent implements OnInit {
   }
 
   async record(eDey: boolean) {
-    console.log({ eDey });
-    console.log(this.center);
-    // collection(this.fireStore);
-    // Add a new document in collection "cities"
-
     const hash = geofire.geohashForLocation([this.center.lat, this.center.lng]);
 
-    const f_loc = {
+    const location = {
       lat: this.center.lat,
       lng: this.center.lng,
       geohash: hash,
     };
 
-    console.log(f_loc);
-
     const docRef = await addDoc(collection(this.fireStore, 'records'), {
       on: eDey,
-      location: f_loc,
+      location,
       recorded_at: serverTimestamp(),
       device_id: '',
     });
-    console.log('Document written with ID: ', docRef.id);
 
-    // Add alert to say inform user that input was recorded
+    this.snackbar.open(`Kpakam! E don enter`, undefined, {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }
