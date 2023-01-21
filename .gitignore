@@ -46,3 +46,4 @@ Thumbs.db
 /firebase-export-*
 /*-debug.log
 /local
+/.firebase

@@ -6,9 +6,9 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import {
-  Firestore,
   addDoc,
   collection,
+  Firestore,
   serverTimestamp,
 } from '@angular/fire/firestore';
 import * as geofire from 'geofire-common';
