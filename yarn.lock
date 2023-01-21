@@ -3438,6 +3438,39 @@
   dependencies:
     tslib "2.4.1"
 
+"@ngrx/effects@^15.1.0":
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-15.1.0.tgz#af62b690cbc58338d1332e3c15cf0bfcec401653"
+  integrity sha512-/8YnhzyAOTdI9RYJAqmIIvh8ip4M4x4DrRyrdDDc62oFM3TrVOvknUUpMp5NxKpKph8hSpevAwaeEBDWGnKkjg==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/entity@^15.1.0":
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-15.1.0.tgz#fd2d439c5a9d3d87028bb60f0b47fec84e8e32bd"
+  integrity sha512-CvE51HR+m5Nhbh4Sr3rDcm93kGZBkbrsVsRf1HR0V7e03Y87IycAEM2loveT7pELLO3+LlZAwWUxVl1HIO/7hg==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/schematics@^15.1.0":
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-15.1.0.tgz#b15a01a6cf5e5983b1f9fbd6d846b0ef1affc2ae"
+  integrity sha512-iGCk6kGPUyIhAcKWpWtidf+O3oe10k6JeAvskBHx+1gbSUKcuoEDRi6gYyWTUyT8KbQVLPOfGJfU/XKR0grfzA==
+
+"@ngrx/store-devtools@^15.1.0":
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-15.1.0.tgz#c2b3f2d4b91f045adf16e6b6f3f031dc6fd98f7c"
+  integrity sha512-InEFdjg2cE0nLgdWWcjXa50SFlzxSVOoeudRqkqQlJlpJ/0RPljlRXHXT63E5cUpryTxYdK2QcE4n5vngq/48g==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/store@^15.1.0":
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-15.1.0.tgz#fc813ef4e8ea3a4ec642633888e30fbd9adcde6d"
+  integrity sha512-Wxjme7yJnxD6il6fGZdFTdSs9gL+6OFW8/II9vApFokUb0E7UQBm8RYb9dYJ2IQJvWXwO+2ItSaecRUZgt39kA==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngtools/webpack@15.1.2":
   version "15.1.2"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-15.1.2.tgz#dd331f1b496383376576ec1c1506788e90365afa"
@@ -4277,6 +4310,11 @@
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-4.0.2.tgz#6286b4c7228d58ab7866d19716f3696e03a09397"
   integrity sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==
+
+"@types/uuid@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.0.tgz#53ef263e5239728b56096b0a869595135b7952d2"
+  integrity sha512-kr90f+ERiQtKWMz5rP32ltJ/BtULDI5RVO0uavn1HQUOwjx0R1h0rnDYNL0CepF1zL5bSY6FISAfd9tOdDhU5Q==
 
 "@types/ws@^8.5.1":
   version "8.5.4"
@@ -10810,6 +10848,14 @@ netmask@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-2.0.2.tgz#8b01a07644065d536383835823bc52004ebac5e7"
   integrity sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==
+
+ngrx-store-localstorage@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ngrx-store-localstorage/-/ngrx-store-localstorage-15.0.0.tgz#76050be74115f82b8f2701560fdfdb2fd8929bf1"
+  integrity sha512-DyALGeQV2N1fuNsETii5iLyFUGZZS6FYxltnF1D8pNK188KEp5ntwQ4kJ2Jc4lV1EcYqxalY3WuJWMH+QX+3qg==
+  dependencies:
+    deepmerge "^4.2.2"
+    tslib "^2.3.0"
 
 nice-napi@^1.0.2:
   version "1.0.2"
