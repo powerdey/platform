@@ -6,6 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Firestore } from '@angular/fire/firestore';
 import { mock } from 'jest-mock-extended';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('RecordingComponent', () => {
   let component: RecordingComponent;
@@ -17,6 +18,7 @@ describe('RecordingComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [MatSnackBarModule, HttpClientTestingModule],
       providers: [
+        provideMockStore(),
         {
           provide: Firestore,
           useValue: mock<Firestore>(),
