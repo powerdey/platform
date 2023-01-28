@@ -10,6 +10,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {
   connectFirestoreEmulator,
   getFirestore,
@@ -22,6 +25,9 @@ import { PowerdeyStoreModule } from './store/powerdey-store.module';
 import { EffectsModule } from '@ngrx/effects';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { deviceFeatureKey } from './store/device.reducer';
+import { SettingsButtonComponent } from './settings-button/settings-button.component';
+import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -33,11 +39,19 @@ export function localStorageSyncReducer(
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    SettingsButtonComponent,
+    SettingsDialogComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpClientJsonpModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => {
       return initializeApp(environment.firebase);
     }),
