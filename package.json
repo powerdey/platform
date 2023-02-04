@@ -36,7 +36,8 @@
     "test:ui:watch": "jest --watch",
     "deploy:functions:staging": "firebase deploy --only functions,firestore:rules --message \"$(git log -1 --pretty=%s)\"",
     "setup": "husky install",
-    "emulate": "firebase emulators:start --export-on-exit=./local --import=./local"
+    "emulate": "firebase emulators:start --export-on-exit=./local --import=./local",
+    "serve": "nx run app:serve"
   },
   "private": true,
   "dependencies": {

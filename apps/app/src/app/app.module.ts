@@ -28,13 +28,15 @@ import { deviceFeatureKey } from './store/device.reducer';
 import { SettingsButtonComponent } from './settings-button/settings-button.component';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { settingsFeatureKey } from './store/settings.reducer';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
-  return localStorageSync({ keys: [deviceFeatureKey], rehydrate: true })(
-    reducer
-  );
+  return localStorageSync({
+    keys: [deviceFeatureKey, settingsFeatureKey],
+    rehydrate: true,
+  })(reducer);
 }
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
