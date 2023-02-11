@@ -15,8 +15,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Timezone</mat-label>
         <mat-select formControlName="timezone">
-          <mat-option *ngFor="let option of timezones" [value]="option.value">
-            {{ option.name }}
+          <mat-option *ngFor="let option of timezones" [value]="option.tzCode">
+            {{ option.label }}
           </mat-option>
         </mat-select>
       </mat-form-field>

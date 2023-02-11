@@ -20,7 +20,9 @@
           "@angular/material/prebuilt-themes/indigo-pink.css",
           "apps/app/src/styles.scss"
         ],
-        "scripts": []
+        "scripts": [],
+        "i18nMissingTranslation": "error",
+        "localize": ["cpe-NG"]
       },
       "configurations": {
         "production": {
@@ -51,6 +53,15 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "en-US": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true,
+          "localize": ["en-US"]
         }
       },
       "defaultConfiguration": "production"
@@ -63,6 +74,9 @@
         },
         "development": {
           "browserTarget": "app:build:development"
+        },
+        "en-US": {
+          "browserTarget": "app:build:development,en-US"
         }
       },
       "defaultConfiguration": "development",
@@ -73,7 +87,8 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "app:build"
+        "browserTarget": "app:build",
+        "outputPath": "apps/app/src/locale"
       }
     },
     "lint": {
@@ -89,6 +104,12 @@
         "jestConfig": "apps/app/jest.config.ts",
         "passWithNoTests": true
       }
+    }
+  },
+  "i18n": {
+    "sourceLocale": "cpe-NG",
+    "locales": {
+      "en-US": "apps/app/src/locale/messages.en-US.xlf"
     }
   },
   "tags": []
