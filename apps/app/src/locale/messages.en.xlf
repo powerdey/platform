@@ -17,63 +17,63 @@
         </context-group>
       </trans-unit>
       <trans-unit id="3249797093285791748" datatype="html">
-        <source>Power dey?</source>
+        <source>Is there power?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/app.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="24889716052157454" datatype="html">
-        <source>E dey?</source>
+        <source>Please confirm if there is power at your location.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4755587838105045189" datatype="html">
-        <source>Confam say power dey</source>
+        <source>Yes, there is power</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1407107171960851659" datatype="html">
-        <source> E dey </source>
+        <source> Yes </source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1103289390152477603" datatype="html">
-        <source>Power no dey</source>
+        <source>No, there is no power</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2873507963113381720" datatype="html">
-        <source> At all </source>
+        <source> No </source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
           <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5140578120628280853" datatype="html">
-        <source>We no sabi your domot: <x id="PH" equiv-text="positionError.message"/></source>
+        <source>Unable to determine your location: <x id="PH" equiv-text="positionError.message"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.ts</context>
           <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="265698147009853878" datatype="html">
-        <source>Kpakam! E don enter</source>
+        <source>Thank you for reporting!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.ts</context>
           <context context-type="linenumber">108</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1469389614274137009" datatype="html">
-        <source>Carry me go settings</source>
+        <source>Settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/settings-button/settings-button.component.html</context>
           <context context-type="linenumber">1</context>
@@ -101,14 +101,14 @@
         </context-group>
       </trans-unit>
       <trans-unit id="2713931775294806627" datatype="html">
-        <source>I no do again</source>
+        <source>Cancel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/settings-dialog/settings-dialog.component.html</context>
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5374058235278075228" datatype="html">
-        <source>E good like this</source>
+        <source>Save</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/settings-dialog/settings-dialog.component.html</context>
           <context context-type="linenumber">27</context>

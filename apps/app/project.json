@@ -22,7 +22,7 @@
         ],
         "scripts": [],
         "i18nMissingTranslation": "error",
-        "localize": ["cpe-NG"]
+        "localize": ["cpe-NG", "en-US"]
       },
       "configurations": {
         "production": {
@@ -109,7 +109,7 @@
   "i18n": {
     "sourceLocale": "cpe-NG",
     "locales": {
-      "en-US": "apps/app/src/locale/messages.en-US.xlf"
+      "en-US": "apps/app/src/locale/messages.en.xlf"
     }
   },
   "tags": []

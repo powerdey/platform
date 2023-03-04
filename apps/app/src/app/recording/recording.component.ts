@@ -16,6 +16,7 @@ import { Store } from '@ngrx/store';
 import { setDeviceId } from '../store/device.actions';
 import { selectDeviceId } from '../store/device.selectors';
 import { v4 as uuid } from 'uuid';
+import { json } from 'stream/consumers';
 
 @Component({
   selector: 'powerdey-recording',
@@ -80,7 +81,7 @@ export class RecordingComponent implements OnInit {
         (positionError) => {
           console.error({ positionError });
           this.snackbar.open(
-            `Unable to set current location: ${positionError.message}`
+            $localize`We no sabi your domot: ${positionError.message}`
           );
         }
       );
@@ -103,7 +104,7 @@ export class RecordingComponent implements OnInit {
       device_id: this.deviceId,
     });
 
-    this.snackbar.open(`Kpakam! E don enter`, undefined, {
+    this.snackbar.open($localize`Kpakam! E don enter`, undefined, {
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
