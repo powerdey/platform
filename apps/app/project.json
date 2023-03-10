@@ -22,7 +22,7 @@
         ],
         "scripts": [],
         "i18nMissingTranslation": "error",
-        "localize": ["cpe-NG", "en-US"]
+        "localize": ["cpe-NG"]
       },
       "configurations": {
         "production": {
