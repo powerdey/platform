@@ -6,21 +6,21 @@
         <source>Menu icon</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/app.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="278590554940342755" datatype="html">
         <source>menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/app.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3249797093285791748" datatype="html">
         <source>Power dey?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/app.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="24889716052157454" datatype="html">
@@ -62,21 +62,21 @@
         <source>We no sabi your domot: <x id="PH" equiv-text="positionError.message"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.ts</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="265698147009853878" datatype="html">
         <source>Kpakam! E don enter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/recording/recording.component.ts</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1469389614274137009" datatype="html">
         <source>Carry me go settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/settings-button/settings-button.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4930506384627295710" datatype="html">
@@ -107,11 +107,11 @@
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5374058235278075228" datatype="html">
-        <source>E good like this</source>
+      <trans-unit id="124465576333555958" datatype="html">
+        <source> E good like this </source>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/app/src/app/settings-dialog/settings-dialog.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">27,29</context>
         </context-group>
       </trans-unit>
     </body>

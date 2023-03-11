@@ -3,10 +3,6 @@
     "target": "http://127.0.0.1:5001/powerdey/us-central1/api",
     "secure": false
   },
-  "/en-US": {
-    "target": "http://127.0.0.1:4201",
-    "secure": false
-  },
   "/__/firebase/init.json": {
     "target": "http://127.0.0.1:5000",
     "secure": false

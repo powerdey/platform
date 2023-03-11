@@ -9,7 +9,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  language: 'en-NG',
+  language: 'cpe-NG',
   timezone: 'Africa/Lagos',
 };
 
