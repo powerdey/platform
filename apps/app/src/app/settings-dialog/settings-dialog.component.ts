@@ -21,7 +21,7 @@ export class SettingsDialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<any>, private store: Store) {}
   languages = [
     { name: 'Pidgin English', value: 'cpe-NG' },
-    { name: 'English', value: 'en-GB' },
+    { name: 'English', value: 'en-US' },
   ];
 
   timezones = minimalTimezoneSet;

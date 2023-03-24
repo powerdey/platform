@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule, isDevMode, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -29,6 +29,7 @@ import { SettingsButtonComponent } from './settings-button/settings-button.compo
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { settingsFeatureKey } from './store/settings.reducer';
+import { APP_BASE_HREF } from '@angular/common';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -74,7 +75,15 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     MatButtonModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_BASE_HREF,
+      useFactory: (locale: string) => {
+        return locale === 'cpe-NG' ? '/' : `/${locale}`;
+      },
+      deps: [LOCALE_ID],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

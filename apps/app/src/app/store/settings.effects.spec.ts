@@ -3,6 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { getRedirectUrl, SettingsEffects } from './settings.effects';
+import { APP_BASE_HREF } from '@angular/common';
 
 describe('SettingsEffects', () => {
   let actions$: Observable<any>;
@@ -10,7 +11,14 @@ describe('SettingsEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SettingsEffects, provideMockActions(() => actions$)],
+      providers: [
+        SettingsEffects,
+        provideMockActions(() => actions$),
+        {
+          provide: APP_BASE_HREF,
+          useValue: '/',
+        },
+      ],
     });
 
     effects = TestBed.inject(SettingsEffects);
@@ -24,10 +32,21 @@ describe('SettingsEffects', () => {
 describe('getRedirectUrl', () => {
   it.each([
     ['/record', 'cpe-NG', { language: 'cpe-NG', timezone: '' }, '/record'],
-    // ['/record', 'cpe-NG', {language: 'en-US', timezone: ''}, '/en-US/record'],
-    // ['/en-US/record', 'en-US', {language: 'en-US', timezone: ''}, '/en-US/record'],
+    ['/abc', 'cpe-NG', { language: 'cpe-NG', timezone: '' }, '/abc'],
+    ['/record', 'cpe-NG', { language: 'en-US', timezone: '' }, '/en-US/record'],
+    [
+      '/en-US/record',
+      'en-US',
+      { language: 'en-US', timezone: '' },
+      '/en-US/record',
+    ],
     ['/en-US/record', 'en-US', { language: 'cpe-NG', timezone: '' }, '/record'],
-    // ['/en-US/record', 'en-US', {language: 'fr-FR', timezone: ''}, '/fr-FR/record'],
+    [
+      '/en-US/record',
+      'en-US',
+      { language: 'fr-FR', timezone: '' },
+      '/fr-FR/record',
+    ],
   ])(
     'given (%s, %s, %s)',
     (

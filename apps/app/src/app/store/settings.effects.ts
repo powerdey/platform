@@ -5,6 +5,7 @@ import { concatMap } from 'rxjs/operators';
 import { Observable, EMPTY, tap } from 'rxjs';
 import * as SettingsActions from './settings.actions';
 import { Router } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Injectable()
 export class SettingsEffects {
@@ -20,9 +21,11 @@ export class SettingsEffects {
     return this.actions$.pipe(
       ofType(SettingsActions.updateSettings),
       tap((settings) => {
-        const currentUrl = this.router.routerState.snapshot.url;
+        const currentUrl = `${
+          this.appBaseHref
+        }${this.router.routerState.snapshot.url.substring(1)}`;
         const redirectUrl = getRedirectUrl(currentUrl, this.locale, settings);
-
+        console.log({ redirectUrl, currentUrl, appBaseHref: this.appBaseHref });
         if (currentUrl !== redirectUrl) {
           window.location.href = redirectUrl;
         }
@@ -35,7 +38,8 @@ export class SettingsEffects {
   constructor(
     private actions$: Actions,
     private router: Router,
-    @Inject(LOCALE_ID) private locale: string
+    @Inject(LOCALE_ID) private locale: string,
+    @Inject(APP_BASE_HREF) private appBaseHref: string
   ) {}
 }
 export const defaultLocale = 'cpe-NG';
@@ -45,5 +49,14 @@ export function getRedirectUrl(
   currentLocale: string,
   settings: { language: string; timezone: string }
 ): string {
-  return '/record';
+  if (settings.language == currentLocale) {
+    return currentUrl;
+  }
+  if (settings.language == defaultLocale) {
+    return currentUrl.substring(settings.language.length);
+  }
+  if (currentLocale == defaultLocale) {
+    return `/${settings.language}${currentUrl}`;
+  }
+  return currentUrl.replace(currentLocale, settings.language);
 }
