@@ -120,7 +120,11 @@
     }
   },
   "i18n": {
-    "sourceLocale": "cpe-NG",
+    "sourceLocale": {
+      "code": "cpe-NG",
+      "baseHref": "",
+      "deployUrl": "/cpe-NG/"
+    },
     "locales": {
       "en-US": "apps/app/src/locale/messages.en.xlf"
     }

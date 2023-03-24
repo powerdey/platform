@@ -17,11 +17,7 @@
   ],
   "hosting": {
     "public": "dist/apps/app",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "/api",
@@ -33,7 +29,11 @@
       },
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/cpe-NG/index.html"
+      },
+      {
+        "source": "**/*",
+        "destination": "/cpe-NG/*"
       }
     ]
   },
