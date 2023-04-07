@@ -79,7 +79,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     {
       provide: APP_BASE_HREF,
       useFactory: (locale: string) => {
-        return locale === 'cpe-NG' ? '/' : `/${locale}`;
+        return locale === 'cpe-NG' ? '/' : `/${locale}/`;
       },
       deps: [LOCALE_ID],
     },

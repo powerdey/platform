@@ -1,0 +1,31 @@
+{
+  "name": "hosting",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/hosting",
+  "prefix": "powerdey",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build"],
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/hosting",
+        "parallel": false,
+        "commands": [
+          "mkdir -p dist/apps/hosting/en-US/",
+          "cp -R ./dist/apps/app/cpe-NG/* dist/apps/hosting/",
+          "cp -R ./dist/apps/app/en-US/* dist/apps/hosting/en-US/"
+        ]
+      },
+      "configurations": {
+        "production": {},
+        "development": {},
+        "en-US": {}
+      },
+      "defaultConfiguration": "production"
+    }
+  },
+  "implicitDependencies": ["app"],
+  "tags": []
+}
