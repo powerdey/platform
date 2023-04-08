@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="cpe-NG" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1994010229911224114" datatype="html">
+        <source>Menu icon</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/app.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="278590554940342755" datatype="html">
+        <source>menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/app.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3249797093285791748" datatype="html">
+        <source>Is there power?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/app.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="24889716052157454" datatype="html">
+        <source>Please confirm if there is power at your location.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4755587838105045189" datatype="html">
+        <source>Yes, there is power</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1407107171960851659" datatype="html">
+        <source> Yes </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1103289390152477603" datatype="html">
+        <source>No, there is no power</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2873507963113381720" datatype="html">
+        <source> No </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/recording/recording.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5140578120628280853" datatype="html">
+        <source>Unable to determine your location: <x id="PH" equiv-text="positionError.message"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/recording/recording.component.ts</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="265698147009853878" datatype="html">
+        <source>Thank you for reporting!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/recording/recording.component.ts</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1469389614274137009" datatype="html">
+        <source>Settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/settings-button/settings-button.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4930506384627295710" datatype="html">
+        <source>Settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/settings-dialog/settings-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2826581353496868063" datatype="html">
+        <source>Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/settings-dialog/settings-dialog.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3894039560161506093" datatype="html">
+        <source>Timezone</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/settings-dialog/settings-dialog.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2713931775294806627" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/settings-dialog/settings-dialog.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="124465576333555958" datatype="html">
+        <source>Save</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/app/src/app/settings-dialog/settings-dialog.component.html</context>
+          <context context-type="linenumber">27,29</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

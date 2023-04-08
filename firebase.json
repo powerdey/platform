@@ -16,12 +16,8 @@
     }
   ],
   "hosting": {
-    "public": "dist/apps/app",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "dist/apps/hosting",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "/api",
@@ -30,6 +26,10 @@
       {
         "source": "/api/**",
         "function": "api"
+      },
+      {
+        "source": "/en-US/**",
+        "destination": "/en-US/index.html"
       },
       {
         "source": "**",

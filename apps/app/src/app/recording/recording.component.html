@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>E dey?</mat-card-title>
+    <mat-card-title i18n>E dey?</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div *ngIf="apiLoaded | async">
@@ -17,17 +17,21 @@
         (click)="record(true)"
         mat-fab
         color="primary"
-        aria-label="Mark location as having power"
+        aria-label="Confam say power dey"
+        i18n-aria-label
+        i18n
       >
-        Yes
+        E dey
       </button>
       <button
         (click)="record(false)"
         mat-fab
         color="warn"
-        aria-label="Mark location as not having power"
+        aria-label="Power no dey"
+        i18n-aria-label
+        i18n
       >
-        No
+        At all
       </button>
     </div>
 
