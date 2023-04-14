@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'powerdey-root',
+  selector: 'pw-admin-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
