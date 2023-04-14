@@ -37,7 +37,7 @@
     "deploy:functions:staging": "firebase deploy --only functions,firestore:rules --message \"$(git log -1 --pretty=%s)\"",
     "setup": "husky install",
     "emulate": "firebase emulators:start --export-on-exit=./local --import=./local",
-    "serve": "nx run app:serve-i18n"
+    "serve": "nx run hosting:serve"
   },
   "private": true,
   "dependencies": {
@@ -107,7 +107,7 @@
     "@typescript-eslint/parser": "^5.36.1",
     "commitizen": "^4.2.5",
     "conventional-changelog-angular": "^5.0.13",
-    "cypress": "^10.7.0",
+    "cypress": "^12.2.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",

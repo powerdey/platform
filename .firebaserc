@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "powerdey"
-  }
+  },
+  "targets": {
+    "powerdey": {
+      "hosting": {
+        "admin": [
+          "powerdey-admin"
+        ],
+         "app": [
+          "powerdey"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

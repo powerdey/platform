@@ -24,6 +24,16 @@
         "en-US": {}
       },
       "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run app:serve:development",
+          "nx run app:serve:en-US",
+          "nx run admin:serve:development"
+        ]
+      }
     }
   },
   "implicitDependencies": ["app"],

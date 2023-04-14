@@ -111,12 +111,6 @@
         "jestConfig": "apps/app/jest.config.ts",
         "passWithNoTests": true
       }
-    },
-    "serve-i18n": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": ["nx run app:serve:development", "nx run app:serve:en-US"]
-      }
     }
   },
   "i18n": {

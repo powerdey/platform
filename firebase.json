@@ -15,28 +15,50 @@
       ]
     }
   ],
-  "hosting": {
-    "public": "dist/apps/hosting",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [
-      {
-        "source": "/api",
-        "function": "api"
-      },
-      {
-        "source": "/api/**",
-        "function": "api"
-      },
-      {
-        "source": "/en-US/**",
-        "destination": "/en-US/index.html"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
+  "hosting": [
+    {
+      "target": "app",
+      "public": "dist/apps/hosting",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "/api",
+          "function": "api"
+        },
+        {
+          "source": "/api/**",
+          "function": "api"
+        },
+        {
+          "source": "/en-US/**",
+          "destination": "/en-US/index.html"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "admin",
+      "public": "dist/apps/admin",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "/api",
+          "function": "api"
+        },
+        {
+          "source": "/api/**",
+          "function": "api"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ],
   "storage": {
     "rules": "storage.rules"
   },
