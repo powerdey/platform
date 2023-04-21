@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Powerdey Admin</span>
+  <span class="example-spacer"></span>
+
+  <a
+    *ngFor="let item of menuItems"
+    mat-button
+    [routerLink]="item.link"
+    routerLinkActive="menu-selected"
+    >{{ item.title }}</a
+  >
+</mat-toolbar>
+
+<router-outlet></router-outlet>
