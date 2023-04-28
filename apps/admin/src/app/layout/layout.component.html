@@ -16,6 +16,9 @@
     routerLinkActive="menu-selected"
     >{{ item.title }}</a
   >
+  <a href="javascript:;" mat-button (click)="logout()">Logout</a>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<main>
+  <router-outlet></router-outlet>
+</main>

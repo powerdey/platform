@@ -1,7 +1,9 @@
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {TestBed, waitForAsync} from '@angular/core/testing';
-import {HttpClientModule} from '@angular/common/http';
-import {AppComponent} from './app.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { mock } from 'jest-mock-extended';
+import { Performance } from '@angular/fire/performance';
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
@@ -9,6 +11,12 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [HttpClientModule],
+      providers: [
+        {
+          provide: Performance,
+          useValue: mock(Performance),
+        },
+      ],
     }).compileComponents();
   }));
 

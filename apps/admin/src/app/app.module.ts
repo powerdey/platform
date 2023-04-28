@@ -6,18 +6,17 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { LayoutComponent } from './layout/layout.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { firebaseModules, materialModules } from './bootstrap';
+import { PowerdeyAdminStoreModule } from './store/powerdey-admin-store.module';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
   imports: [
     BrowserModule,
     NoopAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
+    ...materialModules,
+    ...firebaseModules,
+    PowerdeyAdminStoreModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [],

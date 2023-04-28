@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Auth, signOut } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pw-admin-layout',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
+  constructor(private auth: Auth, private router: Router) {}
+
   menuItems = [
     {
       link: '/dashboard',
@@ -16,4 +20,8 @@ export class LayoutComponent {
       title: 'Example',
     },
   ];
+
+  logout() {
+    signOut(this.auth).then(() => this.router.navigate(['/login']));
+  }
 }
