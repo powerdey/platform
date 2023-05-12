@@ -12,7 +12,7 @@ jobs:
     runs-on:
       - ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Cache node modules
         uses: actions/cache@v3
         id: node-cache
@@ -26,9 +26,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version-file: '.nvmrc'
       - run: yarn --frozen-lockfile
         name: Yarn Install
         id: yarn
@@ -47,7 +47,7 @@ jobs:
     runs-on:
       - ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Cache node modules
         uses: actions/cache@v3
         id: node-cache
@@ -61,14 +61,14 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version-file: '.nvmrc'
       - run: yarn --frozen-lockfile
         name: Yarn Install
         id: yarn
         if: steps.node-cache.outputs.cache-hit != 'true'
-    #      - run: yarn affected:lint
+      #      - run: yarn affected:lint
       - run: yarn lint
         id: lint
       - uses: act10ns/slack@v1
@@ -85,7 +85,7 @@ jobs:
     runs-on:
       - ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Cache node modules
         uses: actions/cache@v3
         id: node-cache
@@ -99,9 +99,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version-file: '.nvmrc'
       - run: yarn --frozen-lockfile
         name: Yarn Install
         id: yarn
@@ -139,7 +139,7 @@ jobs:
     runs-on:
       - ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Cache node modules
         uses: actions/cache@v3
         id: node-cache
@@ -153,9 +153,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version-file: '.nvmrc'
       - run: yarn --frozen-lockfile
         id: yarn
         name: Yarn Install
@@ -181,7 +181,7 @@ jobs:
     runs-on:
       - ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Cache node modules
         uses: actions/cache@v3
         id: node-cache
@@ -195,9 +195,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version-file: '.nvmrc'
       - run: yarn --frozen-lockfile
         name: Yarn Install
         id: yarn
