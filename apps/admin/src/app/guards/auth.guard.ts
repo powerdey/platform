@@ -10,7 +10,7 @@ import { map, Observable } from 'rxjs';
 import { Auth, authState } from '@angular/fire/auth';
 import { Store } from '@ngrx/store';
 import { clearAuthUser, setAuthUser } from '../store/auth/auth.actions';
-import { UserInfo } from '@firebase/auth';
+import { UserInfo } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',

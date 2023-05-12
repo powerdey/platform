@@ -17,10 +17,15 @@ import {
   getStorage,
   provideStorage,
 } from '@angular/fire/storage';
+import {
+  getRemoteConfig,
+  provideRemoteConfig,
+} from '@angular/fire/remote-config';
 const { emulators } = firebaseConfig;
 
 export const firebaseModules = [
   provideFirebaseApp(() => {
+    console.log(environment.firebase);
     return initializeApp(environment.firebase);
   }),
   provideFirestore(() => {
@@ -37,11 +42,13 @@ export const firebaseModules = [
   providePerformance(() => getPerformance()),
   provideAuth(() => {
     const auth = getAuth();
+    console.log({ environment });
     if (environment.useEmulators) {
       connectAuthEmulator(auth, `http://localhost:${emulators.auth.port}`);
     }
     return auth;
   }),
+  provideRemoteConfig(() => getRemoteConfig()),
   provideAnalytics(() => getAnalytics()),
   provideStorage(() => {
     const storage = getStorage();

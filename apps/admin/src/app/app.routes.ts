@@ -18,6 +18,11 @@ export const appRoutes: Route[] = [
         loadChildren: () =>
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
+      {
+        path: 'records',
+        loadChildren: () =>
+          import('./records/records.module').then((m) => m.RecordsModule),
+      },
     ],
   },
   {

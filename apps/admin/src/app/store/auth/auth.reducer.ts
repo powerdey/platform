@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as AuthActions from './auth.actions';
-import { UserInfo } from '@firebase/auth';
+import { UserInfo } from '@angular/fire/auth';
 
 export const authFeatureKey = 'auth';
 

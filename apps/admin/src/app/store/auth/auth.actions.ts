@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { UserInfo } from '@firebase/auth';
+import { UserInfo } from '@angular/fire/auth';
 
 export const loadAuths = createAction('[Auth] Load Auths');
 

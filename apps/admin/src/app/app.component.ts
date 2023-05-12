@@ -7,5 +7,5 @@ import { Performance } from '@angular/fire/performance';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  performance = inject(Performance);
+  // performance = inject(Performance);
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Auth, signInWithPopup } from '@angular/fire/auth';
-import { GoogleAuthProvider, UserInfo } from '@firebase/auth';
+import { GoogleAuthProvider, UserInfo } from '@angular/fire/auth';
 import { catchError, from, map, of, switchMap, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { setAuthUser } from '../../store/auth/auth.actions';

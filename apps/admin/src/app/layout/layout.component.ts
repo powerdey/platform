@@ -16,8 +16,8 @@ export class LayoutComponent {
       title: 'Dashboard',
     },
     {
-      link: '/example',
-      title: 'Example',
+      link: '/records',
+      title: 'Records',
     },
   ];
 
