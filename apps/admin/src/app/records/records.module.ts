@@ -7,15 +7,18 @@ import { RecordTableComponent } from './record-table/record-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { TimechartComponent } from './timechart/timechart.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [RecordsComponent, RecordTableComponent],
+  declarations: [RecordsComponent, RecordTableComponent, TimechartComponent],
   imports: [
     CommonModule,
     RecordsRoutingModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    NgChartsModule,
   ],
 })
 export class RecordsModule {}
