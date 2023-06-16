@@ -90,6 +90,7 @@
     "@apidevtools/json-schema-ref-parser": "9.0.3",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@faker-js/faker": "^8.0.2",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
     "@ngrx/schematics": "^15.1.0",
