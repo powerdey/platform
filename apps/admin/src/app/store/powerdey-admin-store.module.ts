@@ -5,6 +5,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/auth.effects';
 import * as fromAuth from './auth/auth.reducer';
+import * as fromRecords from './records/records.reducer';
+import { RecordsEffects } from './records/records.effects';
 
 @NgModule({
   declarations: [],
@@ -17,7 +19,8 @@ import * as fromAuth from './auth/auth.reducer';
       logOnly: !isDevMode(),
     }),
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
-    EffectsModule.forFeature([AuthEffects]),
+    StoreModule.forFeature(fromRecords.recordsFeatureKey, fromRecords.reducer),
+    EffectsModule.forFeature([AuthEffects, RecordsEffects]),
   ],
 })
 export class PowerdeyAdminStoreModule {}

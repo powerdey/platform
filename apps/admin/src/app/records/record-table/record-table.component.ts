@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { RecordTableDataSource } from './record-table-datasource';
 import { PowerRecord } from '@powerdey/api-interfaces';
-import { Firestore } from '@angular/fire/firestore';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'pw-admin-record-table',
@@ -21,8 +21,8 @@ export class RecordTableComponent implements AfterViewInit {
   displayedColumns = ['recorded_at', 'location', 'device_id'];
 
   // TODO: Replace with repository
-  constructor(firestore: Firestore) {
-    this.dataSource = new RecordTableDataSource(firestore);
+  constructor(store: Store) {
+    this.dataSource = new RecordTableDataSource(store);
   }
 
   ngAfterViewInit(): void {

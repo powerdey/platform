@@ -66,6 +66,7 @@
     "@nrwl/angular": "15.5.3",
     "chart.js": "^4.3.0",
     "compact-timezone-list": "^1.0.6",
+    "date-fns": "^2.30.0",
     "firebase": "^9.16.0",
     "firebase-admin": "^11.5.0",
     "firebase-functions": "^4.2.0",

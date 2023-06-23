@@ -2,14 +2,10 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map, tap } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { merge, Observable } from 'rxjs';
 import { PowerRecord } from '@powerdey/api-interfaces';
-import {
-  collection,
-  collectionData,
-  Firestore,
-  CollectionReference,
-} from '@angular/fire/firestore';
+import { Store } from '@ngrx/store';
+import { selectAllRecords } from '../../store/records/records.selectors';
 
 /**
  * Data source for the RecordTable view. This class should
@@ -21,14 +17,12 @@ export class RecordTableDataSource extends DataSource<PowerRecord> {
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
-  constructor(private firestore: Firestore) {
+  constructor(private store: Store) {
     super();
   }
 
   private fetchData() {
-    return collectionData(
-      collection(this.firestore, 'records') as CollectionReference<PowerRecord>
-    ).pipe(
+    return this.store.select(selectAllRecords).pipe(
       tap((results) => (this.data = results)),
       tap((results) => console.log({ results }))
     );

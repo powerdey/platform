@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { Firestore } from '@angular/fire/firestore';
 import { mock } from 'jest-mock-extended';
 import { GenerateButtonComponent } from './generate-button.component';
+import { RecordsRepositoryService } from '../../repositories/records-repository.service';
 
 describe('GenerateButtonComponent', () => {
   let component: GenerateButtonComponent;
@@ -14,8 +14,8 @@ describe('GenerateButtonComponent', () => {
       imports: [MatSnackBarModule],
       providers: [
         {
-          provide: Firestore,
-          useValue: mock(Firestore),
+          provide: RecordsRepositoryService,
+          useValue: mock(RecordsRepositoryService),
         },
       ],
     }).compileComponents();

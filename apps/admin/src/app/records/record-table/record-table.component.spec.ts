@@ -1,12 +1,11 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
 import { RecordTableComponent } from './record-table.component';
-import { Firestore } from '@angular/fire/firestore';
-import { mock } from 'jest-mock-extended';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('RecordTableComponent', () => {
   let component: RecordTableComponent;
@@ -21,12 +20,7 @@ describe('RecordTableComponent', () => {
         MatSortModule,
         MatTableModule,
       ],
-      providers: [
-        {
-          provide: Firestore,
-          useValue: mock(Firestore),
-        },
-      ],
+      providers: [provideMockStore()],
     }).compileComponents();
   }));
 
