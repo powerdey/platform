@@ -1,0 +1,17 @@
+<form>
+  <mat-form-field>
+    <mat-label>Time Range</mat-label>
+    <mat-select
+      [(ngModel)]="selectedValue"
+      name="timeOption"
+      (selectionChange)="updateSelection()"
+    >
+      <mat-option
+        *ngFor="let timeOption of timeRangeOptions"
+        [value]="timeOption.value"
+      >
+        {{ timeOption.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

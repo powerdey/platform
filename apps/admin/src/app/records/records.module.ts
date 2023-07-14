@@ -12,6 +12,11 @@ import { NgChartsModule } from 'ng2-charts';
 import { GenerateButtonComponent } from './generate-button/generate-button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RecordsFilterComponent } from './records-filter/records-filter.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RecordTableComponent,
     TimechartComponent,
     GenerateButtonComponent,
+    RecordsFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +35,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     NgChartsModule,
     MatButtonModule,
     MatSnackBarModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
 })
 export class RecordsModule {}

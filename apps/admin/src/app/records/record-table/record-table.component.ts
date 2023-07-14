@@ -18,7 +18,7 @@ export class RecordTableComponent implements AfterViewInit {
   dataSource: RecordTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['recorded_at', 'location', 'device_id'];
+  displayedColumns = ['recorded_at', 'location', 'device_id', 'on'];
 
   // TODO: Replace with repository
   constructor(store: Store) {
