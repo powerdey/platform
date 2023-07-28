@@ -5,11 +5,13 @@ import {
   collectionData,
   CollectionReference,
   Firestore,
+  query,
 } from '@angular/fire/firestore';
 import { PowerRecord } from '@powerdey/api-interfaces';
 import { v4 } from 'uuid';
 import * as geofire from 'geofire-common';
 import { faker } from '@faker-js/faker';
+import { QueryConstraint } from '@firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -50,9 +52,15 @@ export class RecordsRepositoryService {
     }
   }
 
-  fetch() {
+  fetch(...queryConstraints: QueryConstraint[]) {
     return collectionData(
-      collection(this.firestore, 'records') as CollectionReference<PowerRecord>
+      query(
+        collection(
+          this.firestore,
+          'records'
+        ) as CollectionReference<PowerRecord>,
+        ...queryConstraints
+      )
     );
   }
 }

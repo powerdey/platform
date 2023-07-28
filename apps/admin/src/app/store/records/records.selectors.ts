@@ -13,3 +13,8 @@ export const selectRecordError = createSelector(
   selectRecordsState,
   (state) => state.error
 );
+
+export const selectRecordRange = createSelector(
+  selectRecordsState,
+  (state) => state.range
+);

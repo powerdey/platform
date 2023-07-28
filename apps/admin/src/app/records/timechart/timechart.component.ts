@@ -2,10 +2,20 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { Store } from '@ngrx/store';
-import { selectAllRecords } from '../../store/records/records.selectors';
+import { selectRecordsState } from '../../store/records/records.selectors';
 import { Subscription, tap } from 'rxjs';
 import format from 'date-fns/format';
 import { Timestamp } from '@angular/fire/firestore';
+import { TimeRange } from '../../store/records/records.filters';
+
+const rangeFormats: { [key in TimeRange]: string } = {
+  [TimeRange.ALL]: 'yyyy',
+  [TimeRange.DAY]: 'hh:00aaa',
+  [TimeRange.WEEK]: 'hh:00aaa',
+  [TimeRange.MONTH]: 'dd/MM/yyyy',
+  [TimeRange.SIX_MONTHS]: 'LLL yy',
+  [TimeRange.YEAR]: 'yyyy',
+};
 
 @Component({
   selector: 'pw-admin-timechart',
@@ -76,13 +86,15 @@ export class TimechartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.store
-      .select(selectAllRecords)
+      .select(selectRecordsState)
       .pipe(
-        tap((records) => {
+        tap((state) => {
           const on = new Map<string, number>();
           const off = new Map<string, number>();
           const dates = new Set<string>();
 
+          // eslint-disable-next-line prefer-const
+          let { records, range } = state;
           records = [...records];
 
           records.sort((a, b) => {
@@ -98,21 +110,23 @@ export class TimechartComponent implements OnInit, OnDestroy {
             return at > bt ? 1 : -1;
           });
 
+          const dateFormat = rangeFormats[range];
+
           records.forEach((record) => {
-            const month = format(
+            const label = format(
               new Timestamp(
                 record.recorded_at.seconds,
                 record.recorded_at.nanoseconds
               ).toDate(),
-              'LLL yy'
+              dateFormat
             );
 
-            dates.add(month);
+            dates.add(label);
 
             if (record.on) {
-              on.set(month, (on.get(month) ?? 0) + 1);
+              on.set(label, (on.get(label) ?? 0) + 1);
             } else {
-              off.set(month, (off.get(month) ?? 0) + 1);
+              off.set(label, (off.get(label) ?? 0) + 1);
             }
           });
 
