@@ -1,0 +1,48 @@
+<div class="mat-elevation-z0">
+  <table
+    mat-table
+    class="full-width-table"
+    matSort
+    matSortDisableClear
+    aria-label="Elements"
+  >
+    <!-- Date Column -->
+    <ng-container matColumnDef="recorded_at">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.recorded_at?.toDate() | date }}
+      </td>
+    </ng-container>
+
+    <!-- Location Column -->
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+      <td mat-cell *matCellDef="let row">{{ row.location | json }}</td>
+    </ng-container>
+
+    <!-- Device ID Column -->
+    <ng-container matColumnDef="device_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Device ID</th>
+      <td mat-cell *matCellDef="let row">{{ row.device_id }}</td>
+    </ng-container>
+
+    <!-- Device On Column -->
+    <ng-container matColumnDef="on">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Power Status</th>
+      <td mat-cell *matCellDef="let row">{{ row.on ? 'On' : 'Off' }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [length]="dataSource?.data?.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 50, 200]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

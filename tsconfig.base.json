@@ -13,9 +13,11 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@powerdey/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@powerdey/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@powerdey/firebase-config": ["firebase.json"]
     }
   },
   "exclude": ["node_modules", "tmp"]

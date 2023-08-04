@@ -30,6 +30,7 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { settingsFeatureKey } from './store/settings.reducer';
 import { APP_BASE_HREF } from '@angular/common';
+import { getPerformance, providePerformance } from '@angular/fire/performance';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -65,6 +66,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
       }
       return firestore;
     }),
+    providePerformance(() => getPerformance()),
     StoreModule.forRoot({}, { metaReducers }),
     EffectsModule.forRoot(),
     PowerdeyStoreModule,
