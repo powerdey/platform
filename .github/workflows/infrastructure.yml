@@ -1,3 +1,4 @@
+name: Infrastructure
 on:
   pull_request:
     branches:
@@ -27,21 +28,21 @@ jobs:
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
-        working-directory: deployments/terraform
+        working-directory: libs/deployments/terraform
       - name: Terraform Init
         id: init
         run: terraform init
-        working-directory: deployments/terraform
+        working-directory: libs/deployments/terraform
       - name: Terraform Validate
         id: validate
-        working-directory: deployments/terraform
+        working-directory: libs/deployments/terraform
         run: terraform validate -no-color
       #################################################################
       # Terraform plan
       #################################################################
       - name: Terraform Plan
         id: plan
-        working-directory: deployments/terraform
+        working-directory: libs/deployments/terraform
         if: github.event_name == 'pull_request'
         run: terraform plan -no-color -out tfplan
         continue-on-error: true
@@ -79,11 +80,11 @@ jobs:
       - name: Terraform Plan
         id: plan-real
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        working-directory: deployments/terraform
+        working-directory: libs/deployments/terraform
         run: terraform plan -no-color -out tfplan
       - name: Terraform Output
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        working-directory: deployments/terraform
+        working-directory: libs/deployments/terraform
         env:
           PROJECT: ${{ matrix.project }}
           OUTCOME: ${{ steps.validate.outcome }}
@@ -92,3 +93,10 @@ jobs:
           echo '```terraform' >> $GITHUB_STEP_SUMMARY
           echo "$OUTCOME" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: failure()
