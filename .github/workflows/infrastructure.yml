@@ -13,6 +13,7 @@ jobs:
         project:
           - powerdey
     steps:
+      - uses: actions/checkout@v3
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
