@@ -1,0 +1,149 @@
+name: Infrastructure
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  plan:
+    runs-on:
+      - ubuntu-latest
+    strategy:
+      matrix:
+        project:
+          - powerdey
+    steps:
+      - uses: actions/checkout@v3
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON_PROVISIONER }}
+
+      #################################################################
+      # Terraform setup
+      #################################################################
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.3
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+        working-directory: libs/deployments/terraform
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: libs/deployments/terraform
+      - name: Terraform Validate
+        id: validate
+        working-directory: libs/deployments/terraform
+        run: terraform validate -no-color
+      #################################################################
+      # Terraform plan
+      #################################################################
+      - name: Terraform Plan
+        id: plan
+        working-directory: libs/deployments/terraform
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color -out tfplan
+        continue-on-error: true
+      - name: Update Pull Request
+        uses: edumserrano/find-create-or-update-comment@v1
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: '<!-- terraform-output ${{ matrix.project }} -->'
+          comment-author: 'github-actions[bot]'
+          body:
+            | # can be a single value or you can compose text with multi-line values
+            <!-- terraform-output ${{ matrix.project }} -->
+            #### Terraform Format and Style for ${{ matrix.project }} 🖌`${{ steps.fmt.outcome }}`
+
+            #### Terraform Initialization ⚙️`${{ steps.init.outcome }}`
+            #### Terraform Plan 📖`${{ steps.plan.outcome }}`
+            #### Terraform Validation 🤖`${{ steps.validate.outcome }}`
+
+            <details><summary>Show Plan</summary>
+
+            ```
+            ${{ env.PLAN }}
+            ```
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: `${{ github.event_name }}`*
+          edit-mode: replace
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+      - name: Terraform Plan
+        id: plan-real
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        working-directory: libs/deployments/terraform
+        run: terraform plan -no-color -out tfplan
+      - name: Terraform Output
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        working-directory: libs/deployments/terraform
+        env:
+          PROJECT: ${{ matrix.project }}
+          OUTCOME: ${{ steps.validate.outcome }}
+        run: |
+          echo '### Terraform Changes for ' ${{ matrix.project }} >> $GITHUB_STEP_SUMMARY
+          echo '```terraform' >> $GITHUB_STEP_SUMMARY
+          echo "$OUTCOME" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: failure()
+
+  apply:
+    environment: infrastructure
+    needs:
+      - plan
+    runs-on:
+      - ubuntu-latest
+    strategy:
+      matrix:
+        project:
+          - powerdey
+    steps:
+      - uses: actions/checkout@v3
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON_PROVISIONER }}
+
+      #################################################################
+      # Terraform setup
+      #################################################################
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.3
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: libs/deployments/terraform
+      #################################################################
+      # Terraform plan
+      #################################################################
+      - name: Terraform Plan
+        id: plan
+        working-directory: libs/deployments/terraform
+        if: github.event_name == 'pull_request'
+        run: |
+          terraform plan -no-color -out tfplan
+          terraform apply tfplan
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: failure()
