@@ -15,6 +15,8 @@ import * as express from 'express';
 import * as functions from 'firebase-functions';
 import { RedocModule, RedocOptions } from '@nicholas.braun/nestjs-redoc';
 import { LoggerMiddleware } from './app/middleware/logger.middleware';
+import { onCall, HttpsError } from 'firebase-functions/v2/https';
+import { logger } from 'firebase-functions/v2';
 
 const expressInstance = express();
 
@@ -90,3 +92,7 @@ export const api = functions
   .https.onRequest((request, response) => {
     expressInstance(request, response);
   });
+
+export const syncBigQuery = onCall(async (request) => {
+  // await
+});

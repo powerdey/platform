@@ -7,6 +7,11 @@ import {
   getFirestore,
   provideFirestore,
 } from '@angular/fire/firestore';
+import {
+  connectFunctionsEmulator,
+  getFunctions,
+  provideFunctions,
+} from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import * as firebaseConfig from '@powerdey/firebase-config';
 import { getPerformance, providePerformance } from '@angular/fire/performance';
@@ -56,6 +61,17 @@ export const firebaseModules = [
       connectStorageEmulator(storage, 'localhost', emulators.storage.port);
     }
     return storage;
+  }),
+  provideFunctions(() => {
+    const functions = getFunctions();
+    if (environment.useEmulators) {
+      connectFunctionsEmulator(
+        functions,
+        'localhost',
+        emulators.functions.port
+      );
+    }
+    return functions;
   }),
 ];
 
