@@ -17,6 +17,8 @@ import { RedocModule, RedocOptions } from '@nicholas.braun/nestjs-redoc';
 import { LoggerMiddleware } from './app/middleware/logger.middleware';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { logger } from 'firebase-functions/v2';
+import { BigQuery } from '@google-cloud/bigquery';
+import { v4 } from 'uuid';
 
 const expressInstance = express();
 
@@ -93,6 +95,23 @@ export const api = functions
     expressInstance(request, response);
   });
 
-export const syncBigQuery = onCall(async (request) => {
-  // await
-});
+export const syncBigQuery = onCall(
+  {
+    cors: true,
+  },
+  async (request) => {
+    // Creates a client
+    const bigqueryClient = new BigQuery();
+
+    await bigqueryClient
+      .dataset('power_records')
+      .table('records')
+      .insert([
+        {
+          on: true,
+          recorded_at: new Date(),
+          device_id: v4(),
+        },
+      ]);
+  }
+);

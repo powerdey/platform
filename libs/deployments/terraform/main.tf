@@ -9,7 +9,7 @@ module "bigquery" {
   description                 = "Data synced from firestore records"
   project_id                  = data.google_project.default.project_id
   location                    = "US"
-  default_table_expiration_ms = 8.64e+7
+  default_table_expiration_ms = null
 
   tables = [
     {
