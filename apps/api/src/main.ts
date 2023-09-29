@@ -19,6 +19,7 @@ import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { logger } from 'firebase-functions/v2';
 import { BigQuery } from '@google-cloud/bigquery';
 import { v4 } from 'uuid';
+import * as admin from 'firebase-admin';
 
 const expressInstance = express();
 
@@ -98,6 +99,7 @@ export const api = functions
 export const syncBigQuery = onCall(
   {
     cors: true,
+    invoker: 'public',
   },
   async (request) => {
     // Creates a client
