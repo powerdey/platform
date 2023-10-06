@@ -105,15 +105,29 @@ export const syncBigQuery = onCall(
     // Creates a client
     const bigqueryClient = new BigQuery();
 
-    await bigqueryClient
-      .dataset('power_records')
-      .table('records')
-      .insert([
-        {
-          on: true,
-          recorded_at: new Date(),
-          device_id: v4(),
-        },
-      ]);
+    try {
+      await bigqueryClient
+        .dataset('power_records')
+        .table('trends')
+        .insert([
+          {
+            on: true,
+            recorded_at: new Date(),
+            device_id: v4(),
+          },
+        ]);
+    } catch (e) {
+      logger.error(e);
+      if (e.name === 'PartialFailureError') {
+        for (const err of e.errors as {
+          errors: { message: string; reason: string }[];
+          row: any;
+        }[]) {
+          logger.error(err);
+        }
+      } else {
+        logger.error(e);
+      }
+    }
   }
 );
