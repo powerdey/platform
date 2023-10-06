@@ -96,6 +96,12 @@ export const api = functions
     expressInstance(request, response);
   });
 
+let initialised = false;
+if (!initialised) {
+  admin.initializeApp();
+  initialised = true;
+}
+
 export const syncBigQuery = onCall(
   {
     cors: true,
@@ -104,18 +110,28 @@ export const syncBigQuery = onCall(
   async (request) => {
     // Creates a client
     const bigqueryClient = new BigQuery();
+    const firestore = admin.firestore();
+
+    const recordStore = firestore.collection('records');
+    const powerRecords = await recordStore.get();
+    if (powerRecords.empty) {
+      logger.info('No matching documents.');
+      return;
+    }
+
+    const bigQueryData = powerRecords.docs
+      .map((x) => x.data())
+      .map(({ recorded_at, on, device_id }) => ({
+        on,
+        device_id,
+        recorded_at: BigQuery.datetime(recorded_at.toDate().toISOString()),
+      }));
 
     try {
       await bigqueryClient
         .dataset('power_records')
         .table('trends')
-        .insert([
-          {
-            on: true,
-            recorded_at: new Date(),
-            device_id: v4(),
-          },
-        ]);
+        .insert(bigQueryData);
     } catch (e) {
       logger.error(e);
       if (e.name === 'PartialFailureError') {
