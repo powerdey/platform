@@ -15,6 +15,11 @@ import * as express from 'express';
 import * as functions from 'firebase-functions';
 import { RedocModule, RedocOptions } from '@nicholas.braun/nestjs-redoc';
 import { LoggerMiddleware } from './app/middleware/logger.middleware';
+import { onCall, HttpsError } from 'firebase-functions/v2/https';
+import { logger } from 'firebase-functions/v2';
+import { BigQuery } from '@google-cloud/bigquery';
+import { v4 } from 'uuid';
+import * as admin from 'firebase-admin';
 
 const expressInstance = express();
 
@@ -90,3 +95,55 @@ export const api = functions
   .https.onRequest((request, response) => {
     expressInstance(request, response);
   });
+
+let initialised = false;
+if (!initialised) {
+  admin.initializeApp();
+  initialised = true;
+}
+
+export const syncBigQuery = onCall(
+  {
+    cors: true,
+    invoker: 'public',
+  },
+  async (request) => {
+    // Creates a client
+    const bigqueryClient = new BigQuery();
+    const firestore = admin.firestore();
+
+    const recordStore = firestore.collection('records');
+    const powerRecords = await recordStore.get();
+    if (powerRecords.empty) {
+      logger.info('No matching documents.');
+      return;
+    }
+
+    const bigQueryData = powerRecords.docs
+      .map((x) => x.data())
+      .map(({ recorded_at, on, device_id }) => ({
+        on,
+        device_id,
+        recorded_at: BigQuery.datetime(recorded_at.toDate().toISOString()),
+      }));
+
+    try {
+      await bigqueryClient
+        .dataset('power_records')
+        .table('trends')
+        .insert(bigQueryData);
+    } catch (e) {
+      logger.error(e);
+      if (e.name === 'PartialFailureError') {
+        for (const err of e.errors as {
+          errors: { message: string; reason: string }[];
+          row: any;
+        }[]) {
+          logger.error(err);
+        }
+      } else {
+        logger.error(e);
+      }
+    }
+  }
+);

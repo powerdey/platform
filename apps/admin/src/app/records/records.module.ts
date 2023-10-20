@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { SyncButtonComponent } from './sync-button/sync-button.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     TimechartComponent,
     GenerateButtonComponent,
     RecordsFilterComponent,
+    SyncButtonComponent,
   ],
   imports: [
     CommonModule,

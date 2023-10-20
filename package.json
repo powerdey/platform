@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "scripts": {
     "ng": "nx",
@@ -13,7 +13,7 @@
     "build:api": "nx run api:build --skip-nx-cache",
     "build:local": "nx run-many --target build --all",
     "build:production": "nx run-many --target build --all",
-    "build:watch": "yarn nx run-many --target build --all --watch --configuration development",
+    "build:watch": "yarn nx run-many --target build --all --watch --configuration development --parallel=5",
     "test": "nx run-many --target test --all",
     "lint": "nx run-many --target lint --all",
     "affected:apps": "nx affected:apps",
@@ -54,6 +54,7 @@
     "@angular/platform-browser": "15.1.1",
     "@angular/platform-browser-dynamic": "15.1.1",
     "@angular/router": "15.1.1",
+    "@google-cloud/bigquery": "^7.3.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
@@ -68,8 +69,8 @@
     "compact-timezone-list": "^1.0.6",
     "date-fns": "^2.30.0",
     "firebase": "^9.16.0",
-    "firebase-admin": "^11.5.0",
-    "firebase-functions": "^4.2.0",
+    "firebase-admin": "^11.11.0",
+    "firebase-functions": "^4.4.1",
     "geofire-common": "^6.0.0",
     "ng2-charts": "^4.1.1",
     "ngrx-store-localstorage": "^15.0.0",
@@ -116,7 +117,7 @@
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
-    "firebase-tools": "^12.0.0",
+    "firebase-tools": "^12.6.1",
     "husky": "^8.0.1",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
